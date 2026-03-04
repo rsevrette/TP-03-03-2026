@@ -1,23 +1,34 @@
 using System;
 using System.Collections.Generic;
 
-	/* 1/ On affiche Alice car c est une struct ainsi on copie personne p1 dans p2, et modifier p2 ne veut pas dire modifier p1, ainsi on affiche p1 qui retourne Alice
-       2/ On affiche True parce que l’élément de la liste n’est pas modifié : on a seulement modifié une copie du livre, pas le livre original dans la liste.
-	   3/ Avec une class, on affiche False : copie et élément de la liste pointent vers le même objet, donc modifier la copie modifie aussi l’original.
-	   4/ Ecrire livre.Pages = -200 n'est pas cohérent car on peut pas avoir un livre avec un nombre de pages négatif
-	   5/ 
-	*/
-	
+/* 1/ On affiche Alice car c est une struct ainsi on copie personne p1 dans p2, et modifier p2 ne veut pas dire modifier p1, ainsi on affiche p1 qui retourne Alice
+   2/ On affiche True parce que l’élément de la liste n’est pas modifié : on a seulement modifié une copie du livre, pas le livre original dans la liste.
+   3/ Avec une class, on affiche False : copie et élément de la liste pointent vers le même objet, donc modifier la copie modifie aussi l’original.
+   4/ Ecrire livre.Pages = -200 n'est pas cohérent car on peut pas avoir un livre avec un nombre de pages négatif
+   5/ 
+*/
+
 
 public class Program
 {
-    class Livre 
+    class Livre
     {
-        public string Titre;
-        public string Auteur;
-        public int Annee;
-        public int Pages;
-        public bool EstDisponible;
+        public string Titre { get; set; }
+        public string Auteur { get; set; }
+        public int Annee { get; set; }
+        private int pages;
+        private int Pages
+        {
+            get { return pages; }
+            set
+            {
+                if (value > 0)
+                {
+                    pages = value;
+                }
+            }
+        }
+        public bool EstDisponible { get; private set; } = true;
     }
 
     static void Main(string[] args)
